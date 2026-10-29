@@ -11,3 +11,8 @@ Users of private mobility will have an easy and immediate access to comprehensiv
 
 ## Service distinguishing features compared to existing solutions: 
 It is the first web app that simultaneously compares three types of energy carriers, allowing to choose between various alternatives: traditional fuels, electric and electric/hydrogen. The frequency of updating the energy cost is daily for traditional fuels and quarterly for electric recharges. Also, for electric recharges, it distinguishes by power and charging location, offering a cost estimate closer to the user's needs.
+
+
+<img width="1080" height="2400" alt="screenshot_a" src="https://github.com/user-attachments/assets/552b9681-6ce1-43a9-ad54-bfee4b3bc6e4" />
+
+
