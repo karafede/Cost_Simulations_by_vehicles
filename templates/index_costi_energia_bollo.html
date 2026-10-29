@@ -1,0 +1,1890 @@
+
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+
+// * { border: 1px solid red !important; }
+
+
+	 body {
+	    padding: 0;
+        margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		background-image: url("/static/electric_vehicles_costs.jpg");
+		// background-repeat: no-repeat;
+		//background-size: 90%;
+		background-attachment: fixed;
+		 background-size: cover;
+        //position: relative;
+        background-position: center;
+	 }
+	 
+	 
+		 
+    #map {
+	  height: 100%;
+	}
+	
+	/* Optional: Makes the sample page fill the window. */
+	html, body {
+	  height: 100%;
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	
+	.content-wrapper
+	{
+	  width: 400px;
+	  margin-left: 200px; /* to center the div */
+	  margin-right: 300px; /* to center the div */
+	  height: 30%;
+	  margin-top: 10%;
+	  // box-sizing: border-box;
+	}
+
+
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 10px; color: #555; font-size: 0.875em} .legend i { width: 10px; height: 10px; float: left; margin-right: 4px; opacity: 0.7; } 
+
+
+	
+
+     /** sidebar menu **/
+	.innerDiv{
+		position: absolute;
+		width: 10%;
+		height: 15%;
+		background-color: #b2b2ff;
+		opacity: 0.8;
+		margin-top:  1%;
+		margin-left: 5%;
+		z-index: 800;
+		padding-top: 1%;
+		text-overflow:ellipsis;
+        overflow:hidden;
+	}
+	
+
+	
+/*
+    .button {
+	    position: absolute;
+		left: 2%;
+		top: 80%;
+		height: 8%;
+		width: 7%
+        min-width: 7%;
+		margin-top: 30%;
+		margin-left: 50%;
+		z-index: 500;
+	    border: none;
+	    color: white;
+	    padding: 20px;
+	    text-align: center;
+	    display: inline-block;
+	    font-size: 1.5em;
+	    margin: 10px 20px;		
+	}
+*/
+
+
+	
+		 
+		 
+   header, nav {
+    left: 2%;
+	top: 85%;
+  	z-index: 700;
+	position: absolute;
+	text-align: center;
+	margin: 20px 0;
+	padding: 10px;
+	border-spacing: 5px;
+	
+  }
+
+	nav a {
+	  text-decoration: none;
+	  background: #000000;  /* Black */
+	  border-radius: 5px;
+	  font-size: 1.2em;
+	  color: white;
+	  padding: 3px 8px;
+	  display: table-cell;
+	}
+	
+	nav .col_home {
+		background-color: #6b0000;
+	}
+	
+	nav .col_privata {
+		background-color: #4CAF50;
+	}
+	
+	
+	nav .col_collettivo {
+		background-color: #0000ff ;
+	}
+	
+	nav .col_scenari {
+		background-color: #ffa500 ;
+	}
+	
+	
+	nav .col_impatti {
+		background-color: #76a5af ;
+	}
+	
+	nav .IEA_statistics {
+		background-color: #ededed ;
+		color: blue;
+	}
+	
+	
+	
+	
+	
+	
+  /** submit lat lon and input text to Python **/
+   main {
+		// background-color: rgba(51, 170, 51, .3); 
+		// background-color: rgba(248, 248, 248, .3); 
+		// background-color: rgba(251, 251, 251, .4); 
+		background-color: rgba(51, 170, 51, .3);
+		left: 2%;
+		top: 3%;
+		z-index: 700;
+		position: absolute;
+		margin: 2px 0;
+		padding: 5px;
+		text-overflow:ellipsis;
+        overflow:hidden;
+    width: 980px;
+    height: 1140px
+	}
+
+	main div {
+	  background: transparent; 
+	  color: white;
+	  padding: 1px;
+	  margin: 5px auto;
+	}
+	
+
+	main div:nth-child(1) {
+	  width: 0px;
+	  height: 0px;
+	   background: transparent;
+	}
+	
+	
+	main div:nth-child(3) {
+      width: 170px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(4) {
+	  width: 270px;
+	   // background: orange;
+	   background: transparent;
+	}
+	
+	main div:nth-child(5) {
+	  width: 270px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(6) {
+	   width: 270px;
+	    background: transparent;
+	}
+	
+	main div:nth-child(7) {
+	  width: 270px;
+	   background: transparent;
+	}
+	
+	main div:nth-child(8) {
+	  width: 270px;
+	   background: transparent;
+	}
+	
+	
+	main div:nth-child(9) {
+	  width: 270px;
+	   background: transparent;
+	}
+	
+	main div:nth-child(10) {
+	  width: 270px;
+	   	 background: transparent;
+	}
+	
+	
+
+	
+	.inline-block-center {
+	  text-align: center;
+	}
+	
+	.flex-center {
+	  display: flex;
+	  justify-content: center;
+	}
+	
+
+	h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+	}
+	
+	
+	h3 {
+    margin: 0;
+    padding: 0;
+	display: inline;
+	}
+	
+	
+	
+.animation_link {
+  font-size: 140%;
+  color: blue;
+  font-weight: bold;
+}
+
+	
+.animation_link_IEA_STATS {
+  font-size: 130%;
+  color: #0f45d2;
+  font-weight: bold;
+}
+
+
+.label {
+  color: black;
+  padding: 8px;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+# .fuel_type {background-color: #ffffff;} /* Blue */
+
+
+table, th, td {
+  border:1px solid white;
+   left: 20%;
+}
+
+
+table.center_table {
+  //margin-left: -15%; 
+  margin-left: 10%;
+}
+
+
+table.center_table_consumi {
+  //margin-left: -15%; 
+  margin-left: 20%;
+}
+
+
+
+.rds_logo {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+
+.ENEA_logo {
+  margin-left: 1px;
+  margin-top: 10px;
+}
+
+
+
+div#loading {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ div#loading_refresh {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ 
+    /* custom primary buttons */
+    
+    .btn-primary {
+        color: #212529;
+        background-color: white ;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:hover {
+        color: #212529;
+        background-color: #52bebe;
+        border-color: #8ad3d3
+    }
+    
+    .btn-primary:focus,
+    .btn-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-primary.disabled,
+    .btn-primary:disabled {
+        color: #212529;
+        background-color: #7cc;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active,
+    .btn-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #9cdada;
+        border-color: #2e7c7c
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-outline-primary {
+        color: #000000;
+        background-color: yellow;
+        background-image: none;
+        border-color: #7cc;
+    }
+    
+    .btn-outline-primary:hover {
+        color: #222;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:focus,
+    .btn-outline-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+    
+    .btn-outline-primary.disabled,
+    .btn-outline-primary:disabled {
+        color: #7cc;
+        background-color: transparent
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active,
+    .btn-outline-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-outline-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-outline-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+
+	.btn_refresh {border: none;
+			  background-color: blue;
+			  padding: 12px 48px 12px 24px;
+			  border-radius: 4px;
+			  color: #fff;
+			  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7.41' height='12' viewBox='0 0 7.41 12'%3E%3Cpath d='M10,6,8.59,7.41,13.17,12,8.59,16.59,10,18l6-6Z' transform='translate(-8.59 -6)' fill='%23fff'/%3E%3C/svg%3E");
+			  background-repeat: no-repeat;
+			  background-position: right 24px center;
+			  font-size: 20px;
+			  font-weight: bold;
+			  text-align: center;
+			   left: 80%;
+			   top: 85%;}
+		   
+	.btn_costi {width: 30%;
+		  height:50px;
+		  font-size: 20px;
+		  font-weight: bold;
+		  text-align: center;
+		  color:black}
+		   
+		   
+
+   .select{
+		width:  15%;
+		height: 30px;
+		font-size: 18px;
+		font-weight: bold;}
+	
+	
+    .footnote_tradizionale {
+		font-size: smaller;
+		color: black;
+		font-weight: bold;
+	}
+	
+	.footnote_elettrico {
+		font-size: smaller;
+		color: blue;
+		font-weight: bold;
+	}
+	
+	
+	.footnote_idrogeno {
+		font-size: smaller;
+		color: #2c2c2c;
+		font-weight: bold;
+	}
+  
+	
+	div.c {
+	  text-align: center;
+	}
+	
+	div.l {
+	  text-align: left;
+	}
+	
+	
+	div.r {
+	  text-align: right;
+	}
+  
+  
+  
+  div.indent {
+	  text-indent: -30px;
+	}
+  
+  
+#parent {
+  display: flex;
+}
+#narrow {
+  width: 17%;
+  background: yellow;
+  color: black;
+  /* Just so it's visible */
+}
+#wide {
+  /*flex: 1; */
+  width: 65%;
+  /* Grow to rest of container */
+  background: blue;
+  color: black;
+  /* Just so it's visible */
+}
+
+
+
+
+#form-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  display:flex;
+}
+#form1 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+#form2 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+#form3 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+
+
+#form4 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+  background: #ff0000;
+  height:100%;
+}
+#form5 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+   background: #6666ff;
+  height:100%;
+}
+#form6 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+   background: #66b266;
+  height:100%;
+}
+
+
+
+
+.animation_link_refresh {
+  font-size: 130%;
+  color: black;
+  font-weight: bold;
+}
+
+
+.flex {
+   display: flex;
+   flex-direction: row;
+}
+
+
+small{
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+
+.potenza {
+background-color: transparent;
+color: black;
+  font-weight: bold;
+} 
+
+
+label_EUR {
+  color: white;
+  font-family: Arial;
+    font-size: 16px;
+  font-weight: bold;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+
+.blink {
+            font-family: Arial;
+			font-weight: bold;
+			animation: blinker 2.5s linear infinite;
+            color: blue;
+            font-size: 1.5em;
+            /* Larger, responsive font size */
+            margin-bottom: 20px;
+        }
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+		
+   
+
+/*------- styles _ MOBILE app ------ */
+
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  // background-color: #333;
+  background-color: rgba(51, 170, 51, .3);
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Add an active class to highlight the current page */
+.active {
+  background-color: grey;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+/* Dropdown container - needed to position the dropdown content */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  line-height: unset;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* end------- styles _ MOBILE app ------ */
+
+
+
+
+/*------- Skeleton V2.0.4 for mobile app -------*/
+
+
+
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box; }
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box; }
+
+
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+
+
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .container {
+    width: 80%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
+
+
+
+.one.column,
+  .one.columns                    { width: 4.66666666667%; }
+  .two.columns                    { width: 13.3333333333%; }
+  .three.columns                  { width: 22%;            }
+  .four.columns                   { width: 30.6666666667%; }
+  .five.columns                   { width: 39.3333333333%; }
+  .six.columns                    { width: 48%;            }
+  .seven.columns                  { width: 56.6666666667%; }
+  .eight.columns                  { width: 65.3333333333%; }
+  .nine.columns                   { width: 74.0%;          }
+  .ten.columns                    { width: 82.6666666667%; }
+  .eleven.columns                 { width: 91.3333333333%; }
+  .twelve.columns                 { width: 100%; margin-left: 0; }
+
+  .one-third.column               { width: 30.6666666667%; }
+  .two-thirds.column              { width: 65.3333333333%; }
+
+  .one-half.column                { width: 48%; }
+
+
+
+ /* Offsets */
+  .offset-by-one.column,
+  .offset-by-one.columns          { margin-left: 8.66666666667%; }
+  .offset-by-two.column,
+  .offset-by-two.columns          { margin-left: 17.3333333333%; }
+  .offset-by-three.column,
+  .offset-by-three.columns        { margin-left: 26%;            }
+  .offset-by-four.column,
+  .offset-by-four.columns         { margin-left: 34.6666666667%; }
+  .offset-by-five.column,
+  .offset-by-five.columns         { margin-left: 43.3333333333%; }
+  .offset-by-six.column,
+  .offset-by-six.columns          { margin-left: 52%;            }
+  .offset-by-seven.column,
+  .offset-by-seven.columns        { margin-left: 60.6666666667%; }
+  .offset-by-eight.column,
+  .offset-by-eight.columns        { margin-left: 69.3333333333%; }
+  .offset-by-nine.column,
+  .offset-by-nine.columns         { margin-left: 78.0%;          }
+  .offset-by-ten.column,
+  .offset-by-ten.columns          { margin-left: 86.6666666667%; }
+  .offset-by-eleven.column,
+  .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+
+  .offset-by-one-third.column,
+  .offset-by-one-third.columns    { margin-left: 34.6666666667%; }
+  .offset-by-two-thirds.column,
+  .offset-by-two-thirds.columns   { margin-left: 69.3333333333%; }
+
+  .offset-by-one-half.column,
+  .offset-by-one-half.columns     { margin-left: 52%; }
+
+  }
+
+
+/*----- base styles -----*/
+html {
+  font-size: 62.5%; }
+body {
+  font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222; }
+
+
+
+/*---- Typography----*/
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-weight: 300; }
+h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
+h2 { font-size: 3.6rem; line-height: 1.25; letter-spacing: -.1rem; }
+h3 { font-size: 3.0rem; line-height: 1.3;  letter-spacing: -.1rem; }
+h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
+h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
+h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
+
+/* Larger than phablet */
+@media (min-width: 550px) {
+  h1 { font-size: 5.0rem; }
+  h2 { font-size: 4.2rem; }
+  h3 { font-size: 3.6rem; }
+  h4 { font-size: 3.0rem; }
+  h5 { font-size: 2.4rem; }
+  h6 { font-size: 1.5rem; }
+}
+
+p {
+  margin-top: 0; }
+
+
+
+
+/*----- Links----*/
+a {
+  color: #1EAEDB; }
+a:hover {
+  color: #0FA0CE; }
+
+
+
+
+
+/*----- Buttons----*/
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  // border: 1px solid #bbb;
+  border: 1px solid #000000;
+  cursor: pointer;
+  box-sizing: border-box; }
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+
+
+
+
+/*---- Forms ---*/
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+/* Removes awkward default styles on some inputs for iOS */
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+textarea {
+  min-height: 65px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+label,
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600; }
+fieldset {
+  padding: 0;
+  border-width: 0; }
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline; }
+label:label-body {
+  display: inline-block;
+  margin-left: .5rem;
+  font-weight: normal; }
+
+
+
+
+
+/*---- Lists---*/
+ul {
+  list-style: circle inside; }
+ol {
+  list-style: decimal inside; }
+ol, ul {
+  padding-left: 0;
+  margin-top: 0; }
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 90%; }
+li {
+  margin-bottom: 1rem; }
+
+
+
+
+/*---- Code ----*/
+code {
+  padding: .2rem .5rem;
+  margin: 0 .2rem;
+  font-size: 90%;
+  white-space: nowrap;
+  background: #F1F1F1;
+  border: 1px solid #E1E1E1;
+  border-radius: 4px; }
+pre:code {
+  display: block;
+  padding: 1rem 1.5rem;
+  white-space: pre; }
+
+
+/*----- Tables-----*/
+th,
+td {
+  padding: 12px 15px;
+  // text-align: left;
+  text-align: center;
+  border-bottom: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 0; }
+th:last-child,
+td:last-child {
+  padding-right: 0; }
+
+/*
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+*/
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+
+
+/*---- Spacing ---*/
+button,
+.button {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }
+
+
+/*----- Utilities ---*/
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+
+
+/*--- Misc---*/
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #E1E1E1; }
+
+
+/*--- Clearing---*/
+
+/* Self Clearing Goodness */
+.container:after,
+.row:after,
+.u-cf {
+  content: "";
+  display: table;
+  clear: both; }
+
+
+/*--- Media Queries---*/
+
+
+
+/*--- Larger than mobile ----*/
+@media (min-width: 400px) {}
+
+/*---- Larger than phablet (also point when grid becomes active)---- */
+@media (min-width: 550px) {}
+
+/*---- Larger than tablet----- */
+@media (min-width: 750px) {}
+
+/*----- Larger than desktop----- */
+@media (min-width: 1000px) {}
+
+/*----- Larger than Desktop HD ------*/
+@media (min-width: 1200px) {}
+
+
+/*-------end of  Skeleton V2.0.4 for mobile app -------*/
+
+
+
+
+/*-------start of normalize for mobile app -------*/
+
+
+
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+  white-space: normal;
+  // width: 50px;
+  -webkit-appearance: none;
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 960px;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+
+
+
+/*-------end of normalize for mobile app -------*/
+
+
+ </style>
+
+	
+	 
+</head>
+ <meta name="description" content="Leaflet Template">
+  <title>ENEA Costi Veicoli</title>
+
+   <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>This is a tutorial </title>
+        <meta name="keywords" content="Tutorial, Mobile,  Free"/>
+        <meta name="author" content="<author>" />
+        <meta name="copyright" content="<author>" />
+        <meta name="robots" content="index"/>
+        <meta name="robots" content="follow"/>
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+ <!--link rel="stylesheet" href="./static/css/normalize.css"/-->
+ <!--link rel="stylesheet" href="./static/css/skeleton.css"/-->
+ <!--link rel="stylesheet" href="./static/css/style.css"/-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 
+	 
+
+<body>
+
+ <div class="container">
+        <div class="topnav" id="myTopnav">	 
+
+        <div id="loading"></div>
+        
+           <div id="loading"></div>
+           <img src="/static/ENEA_horiz_primary.png" style="max-width: 100%;">
+          <h2 style="font-weight: bold;   font-style: italic;">Costi di mantenimento della tua nuova auto:</h2>
+          <br>
+  <br>
+  
+	
+	<div class="break_line"></div>
+	
+	<!--form action="/risposte_questionario/" method="POST">
+		<input class="btn_costi btn-lg btn-primary mr-1 blink" type="submit" value=" ==> scopri i tuoi costi" onclick="$('#loading').show();">
+     </form-->
+	
+	<!--p><span class="footnote_tradizionale">(tabella aggiornata in base alle tue risposte al questionario)</p-->
+	<!--a style="margin-top: -30px; font-weight: bold; font-size:80%;">(tabella aggiornata in base alle tue risposte al questionario)</a--> 
+	
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
+	
+ 
+ <ul>
+		{% for item in data_input_user_costi %}
+   <table>
+		<thead>
+			<tr>
+				<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Regione</th>
+   	    <td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.regione}}</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+      	<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Km percorsi</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.km_percorsi}}</td>
+			</tr>
+			<tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Percentuale urbana</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.perc_urbana}}</td>
+				</tr>
+			<tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Alimentazione auto attuale</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.alimentazione_attuale}}</td>
+				</tr>
+       <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Consumo medio attuale (litri/100km)-(kg/100km)-(kWh/100km)</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.consumo_medio_attuale}}</td>
+				</tr>
+        <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Consumo attuale auto (se Plug-In, kWh/100km)</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.consumo_medio_ele_plug}}</td>
+				</tr>
+       <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Alimentazione auto nuova</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.alimentazione_nuova}}</td>
+				</tr>      
+        <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Consumo medio auto nuova (litri/100km)-(kg/100km)-(kWh/100km)</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.consumo_medio_nuovo}}</td>
+				</tr>      
+         <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Consumo auto nuova (se Plug-In, kWh/100km)</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.consumo_medio_ele_plug_nuovo}}</td>
+				</tr>      
+        <tr>
+			<th style="font-weight: bold; background: #0066CC; color:white; font-size:90%;">Potenza auto nuova (KW)</th>
+				<td style="font-weight: bold; background: #F2F7FC; color:black;">&nbsp;{{item.potenza_KW_nuovo}}</td>
+				</tr>    
+		</tbody>
+	</table>
+ 	{% endfor %}
+ 	</ul>
+
+ 
+ 
+ 
+ 
+ <br>
+ 
+	
+	<ul>
+	{% for item in data_COSTI_energia_bollo %}
+	<!--table class="center_table" style="width:70%"-->
+	<table>
+		<thead>
+	  <tr>
+		<th style="font-weight: bold; background: white; color: black;" colspan="2">Costo ENERGIA (EUR/100km)</th>
+		<th style="font-weight: bold; background: white; color: black;" colspan="2">Costo Bollo (EUR)</th>
+	 </tr>
+	 </thead>
+		<tbody>
+			<tr>
+		<td style="font-weight: bold; background: #ff0000; font-size:90%; color:white;">auto attuale</td>
+		<td style="font-weight: bold; background: #6666ff; font-size:90%; color:white;">auto da acquistare</td>
+		<td style="font-weight: bold; background: #6666ff; font-size:90%; color:white;">auto da acquistare</td>
+    </tr>
+		<td>{{item.costo_energia_auto_attuale}}</td>
+		<td>{{item.costo_energia_auto_nuova}}</td>
+		<!--td class="w3-center">{{item.costo_bollo_auto_attuale}}</td-->
+		<td>{{item.costo_bollo_auto_nuova}}</td>
+	  </tr>
+     	</tbody>
+	</table>
+	{% endfor %}
+	</ul>
+
+	
+    <!-- MAKE a REFRESH BUTTON-->
+    <form method="POST" action="/costi_chilometrici/">
+    	<input class="button" style="position: absolute; color:black; background-color: yellow; margin-left:5%;" type="submit" value="ricarica"></p>
+    </form>
+
+
+
+
+   <!-- CONTAINER div......closing-->
+	</div>
+</div>
+
+
+
+</main>
+
+
+
+
+
+
+ <script>
+     // ----------------------------------------------------
+
+
+    // ------ trick to scroll page at the same position ----- //
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var scrollpos = sessionStorage.getItem('scrollpos');
+        if (scrollpos) {
+            window.scrollTo(0, scrollpos);
+            sessionStorage.removeItem('scrollpos');
+        }
+    });
+
+    window.addEventListener("beforeunload", function (e) {
+        sessionStorage.setItem('scrollpos', window.scrollY);
+    });
+
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function() {
+        window.setTimeout(function() {
+          setFrameHeight(document.documentElement.clientHeight)
+        }, 0);
+      });
+	
+	
+	var costi_day = "{{ session['COSTI_day']}}"
+	// alert(costi_day);
+		 
+	var costi_day = costi_day.slice(0, 10);
+	// alert(costi_day);
+		 
+	document.addEventListener("DOMContentLoaded", function(){
+    // var data_selezionata = "{{ session['COSTI_day'] }}";
+	var data_selezionata = costi_day;
+	//alert(data_selezionata);
+	document.getElementById('registrationday').value = data_selezionata;  
+	});
+	
+	
+	var fuel_type_tradizionale = "{{session['FUEL_type_tradizionale']}}"
+	var fuel_type_elettrico = "{{session['FUEL_type_elettrico']}}"
+	var fuel_type_idrogeno = "{{session['FUEL_type_idrogeno']}}"
+	// alert(fuel_type);
+	
+    document.addEventListener("DOMContentLoaded", function(){
+	var alimentazione_selezionata_tradizionale =  fuel_type_tradizionale;
+	var alimentazione_selezionata_elettrica =  fuel_type_elettrico;
+	var alimentazione_selezionata_idrogeno =  fuel_type_idrogeno;
+	// alert(alimentazione_selezionata);
+	document.getElementById('fuel_type_carburante').value = alimentazione_selezionata_tradizionale;  
+	document.getElementById('fuel_type_elettrico').value = alimentazione_selezionata_elettrica;  
+	document.getElementById('fuel_type_hydrogen').value = alimentazione_selezionata_idrogeno;  
+	});
+	
+	
+	$('form select').on('change', function(){
+		$(this).closest('form').submit()
+		$('#loading').show();
+	});
+	
+	
+	
+	function myFunction() {
+      //var number = "1.834";
+	  var prezzo_carburante_tradizionale = "{{ session['footnote_prezzo_carburante_tradizionale']}}";
+	  var prezzo_elettrico = "{{ session['footnote_prezzo_elettrico']}}";
+	  var prezzo_idrogeno = "{{ session['footnote_prezzo_idrogeno']}}";
+      document.getElementById("prezzo_carburante_tradizionale").innerHTML = prezzo_carburante_tradizionale;
+	  document.getElementById("prezzo_elettrico").innerHTML = prezzo_elettrico;
+	  document.getElementById("prezzo_idrogeno").innerHTML = prezzo_idrogeno;
+
+    }
+	
+	
+	$(function() {
+    document.body.style.width = '60px'
+    document.body.style.height= '90px'
+});
+	
+	
+
+	
+ </script>
+</body>
+</html>

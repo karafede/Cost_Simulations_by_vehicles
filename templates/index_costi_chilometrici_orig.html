@@ -1,0 +1,1099 @@
+
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+
+// * { border: 1px solid red !important; }
+
+
+	 body {
+	    padding: 0;
+        margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		background-image: url("/static/electric_vehicles_costs.jpg");
+		// background-repeat: no-repeat;
+		//background-size: 90%;
+		background-attachment: fixed;
+		 background-size: cover;
+        //position: relative;
+        background-position: center;
+	 }
+	 
+	 
+		 
+    #map {
+	  height: 100%;
+	}
+	
+	/* Optional: Makes the sample page fill the window. */
+	html, body {
+	  height: 100%;
+	  margin: 0;
+	  padding: 0;
+	}
+	
+
+
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 10px; color: #555; font-size: 0.875em} .legend i { width: 10px; height: 10px; float: left; margin-right: 4px; opacity: 0.7; } 
+
+
+	
+
+     /** sidebar menu **/
+	.innerDiv{
+		position: absolute;
+		width: 10%;
+		height: 15%;
+		background-color: #b2b2ff;
+		opacity: 0.8;
+		margin-top:  1%;
+		margin-left: 5%;
+		z-index: 800;
+		padding-top: 1%;
+		text-overflow:ellipsis;
+        overflow:hidden;
+	}
+	
+
+	
+
+    .button {
+	    position: absolute;
+		left: 2%;
+		top: 80%;
+		height: 8%;
+		width: 7%
+        min-width: 7%;
+		margin-top: 30%;
+		margin-left: 50%;
+		z-index: 500;
+	    border: none;
+	    color: white;
+	    padding: 20px;
+	    text-align: center;
+	    display: inline-block;
+	    font-size: 1.5em;
+	    margin: 10px 20px;		
+	}
+
+
+
+	
+		 
+		 
+   header, nav {
+    left: 2%;
+	top: 85%;
+  	z-index: 700;
+	position: absolute;
+	text-align: center;
+	margin: 20px 0;
+	padding: 10px;
+	border-spacing: 5px;
+	
+  }
+
+	nav a {
+	  text-decoration: none;
+	  background: #000000;  /* Black */
+	  border-radius: 5px;
+	  font-size: 1.2em;
+	  color: white;
+	  padding: 3px 8px;
+	  display: table-cell;
+	}
+	
+	nav .col_home {
+		background-color: #6b0000;
+	}
+	
+	nav .col_privata {
+		background-color: #4CAF50;
+	}
+	
+	
+	nav .col_collettivo {
+		background-color: #0000ff ;
+	}
+	
+	nav .col_scenari {
+		background-color: #ffa500 ;
+	}
+	
+	
+	nav .col_impatti {
+		background-color: #76a5af ;
+	}
+	
+	nav .IEA_statistics {
+		background-color: #ededed ;
+		color: blue;
+	}
+	
+	
+	
+	
+	
+	
+  /** submit lat lon and input text to Python **/
+   main {
+		// background-color: rgba(51, 170, 51, .3); 
+		// background-color: rgba(248, 248, 248, .3); 
+		// background-color: rgba(251, 251, 251, .4); 
+		background-color: rgba(51, 170, 51, .3);
+		left: 2%;
+		top: 3%;
+		z-index: 700;
+		position: absolute;
+		margin: 2px 0;
+		padding: 5px;
+		text-overflow:ellipsis;
+        overflow:hidden;
+    width: 980px;
+    height: 1120px
+	}
+
+	main div {
+	  background: transparent; 
+	  color: white;
+	  padding: 1px;
+	  margin: 5px auto;
+	}
+	
+
+	main div:nth-child(1) {
+	  width: 0px;
+	  height: 0px;
+	   background: transparent;
+	}
+	
+	
+	main div:nth-child(3) {
+      width: 170px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(4) {
+	  width: 270px;
+	   // background: orange;
+	   background: transparent;
+	}
+	
+	main div:nth-child(5) {
+	  width: 270px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(6) {
+	   width: 270px;
+	    background: transparent;
+	}
+	
+	main div:nth-child(7) {
+	  width: 270px;
+	   background: rgba(48,102,180,0.7);
+	}
+	
+	main div:nth-child(8) {
+	  width: 270px;
+	   background: #326bbb;
+	}
+	
+	
+	main div:nth-child(9) {
+	  width: 270px;
+	   background: #326bbb;
+	}
+	
+	main div:nth-child(10) {
+	  width: 270px;
+	   	 background: transparent;
+	}
+	
+	
+
+	
+	.inline-block-center {
+	  text-align: center;
+	}
+	
+	.flex-center {
+	  display: flex;
+	  justify-content: center;
+	}
+	
+
+	h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+	}
+	
+	
+	h3 {
+    margin: 0;
+    padding: 0;
+	display: inline;
+	}
+	
+	
+	
+.animation_link {
+  font-size: 140%;
+  color: blue;
+  font-weight: bold;
+}
+
+	
+.animation_link_IEA_STATS {
+  font-size: 130%;
+  color: #0f45d2;
+  font-weight: bold;
+}
+
+
+.label {
+  color: black;
+  padding: 8px;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+# .fuel_type {background-color: #ffffff;} /* Blue */
+
+
+table, th, td {
+  border:1px solid white;
+   left: 20%;
+}
+
+
+table.center_table {
+  //margin-left: -15%; 
+  margin-left: 10%;
+}
+
+
+table.center_table_consumi {
+  //margin-left: -15%; 
+  margin-left: 20%;
+}
+
+
+
+.rds_logo {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+
+.ENEA_logo {
+  margin-left: 1px;
+  margin-top: 10px;
+}
+
+
+
+div#loading {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ div#loading_refresh {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ 
+    /* custom primary buttons */
+    
+    .btn-primary {
+        color: #212529;
+        background-color: #ffc966 ;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:hover {
+        color: #212529;
+        background-color: #52bebe;
+        border-color: #8ad3d3
+    }
+    
+    .btn-primary:focus,
+    .btn-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-primary.disabled,
+    .btn-primary:disabled {
+        color: #212529;
+        background-color: #7cc;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active,
+    .btn-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #9cdada;
+        border-color: #2e7c7c
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-outline-primary {
+        color: #000000;
+        background-color: yellow;
+        background-image: none;
+        border-color: #7cc;
+    }
+    
+    .btn-outline-primary:hover {
+        color: #222;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:focus,
+    .btn-outline-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+    
+    .btn-outline-primary.disabled,
+    .btn-outline-primary:disabled {
+        color: #7cc;
+        background-color: transparent
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active,
+    .btn-outline-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-outline-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-outline-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+
+	.btn_refresh {width: 12%;
+		  height: 50px;
+		  font-size: 18px;
+		   font-weight: bold;
+		   text-align: center;
+		   left: 85%;
+		   top: 90%;}
+		   
+		   
+	.btn_costi {width: 25%;
+		  height:50px;
+		  font-size: 20px;
+		  font-weight: bold;
+		  text-align: center;
+		  color:black}
+		  
+		  
+	.btn_simulazione_costi {width: 40%;
+	  height:50px;
+	  font-size: 20px;
+	  font-weight: bold;
+	  text-align: center;
+	  color: #212529;
+	  background-color: white ;
+	  color:black}
+		   
+		   
+
+   .select{
+		width:  15%;
+		height: 30px;
+		font-size: 18px;
+		font-weight: bold;}
+	
+	
+    .footnote_tradizionale {
+		// font-size: smaller;
+		font-size:100%;
+		color: black;
+		background-color: yellow;
+		font-weight: bold;
+	}
+	
+	.footnote_elettrico {
+		//font-size: smaller;
+		font-size:100%;
+		color: black;
+		background-color: yellow;
+		font-weight: bold;
+	}
+	
+	
+	.footnote_idrogeno {
+		//font-size: smaller;
+		font-size:100%;
+		color: black;
+		background-color: yellow;
+		font-weight: bold;
+	}
+  
+	
+	div.c {
+	  text-align: center;
+	}
+	
+	div.l {
+	  text-align: left;
+	}
+	
+	
+	div.r {
+	  text-align: right;
+	}
+  
+  
+  
+  div.indent {
+	  text-indent: -30px;
+	}
+  
+  
+#parent {
+  display: flex;
+}
+#narrow {
+  width: 17%;
+  background: yellow;
+  color: black;
+  /* Just so it's visible */
+}
+#wide {
+  /*flex: 1; */
+  width: 85%;
+  /* Grow to rest of container */
+  background: blue;
+  color: black;
+  /* Just so it's visible */
+}
+
+
+
+
+#form-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  display:flex;
+}
+#form1 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+#form2 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+#form3 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+}
+
+
+#form4 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+  background: #ff0000;
+  height:100%;
+}
+#form5 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+   background: #6666ff;
+  height:100%;
+}
+#form6 {
+  width: 50%;
+  display: inline-block;
+  min-width:200px;
+   background: #66b266;
+  height:100%;
+}
+
+
+
+
+.animation_link_refresh {
+  font-size: 130%;
+  color: black;
+  font-weight: bold;
+}
+
+
+.flex {
+   display: flex;
+   flex-direction: row;
+}
+
+
+small{
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+
+.potenza {
+background-color: transparent;
+color: black;
+  font-weight: bold;
+} 
+
+
+label_EUR {
+  color: white;
+  font-family: Arial;
+    font-size: 16px;
+  font-weight: bold;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+
+.blink {
+            font-family: Arial;
+			font-weight: bold;
+			animation: blinker 2.5s linear infinite;
+            color: blue;
+            font-size: 1.5em;
+            /* Larger, responsive font size */
+            margin-bottom: 20px;
+        }
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
+.blink {
+            font-family: Arial;
+			font-weight: bold;
+			animation: blinker 2.5s linear infinite;
+            color: blue;
+            font-size: 1.5em;
+            /* Larger, responsive font size */
+            margin-bottom: 20px;
+        }
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+		
+		
+
+ </style>
+  
+
+	
+	 
+</head>
+   <meta name="description" content="Leaflet Template">
+  <title>ENEA Costi Veicoli</title>
+  <!--meta name="viewport" content="initial-scale=1.0"-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta charset="utf-8">
+		
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+ </head>
+ 
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+ <!--link rel="stylesheet" href="./static/css/normalize.css"/>
+ <link rel="stylesheet" href="./static/css/skeleton.css"/>
+ <link rel="stylesheet" href="./static/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	 
+	 
+
+<body>
+<div id="loading"></div>
+<!--div id="loading_refresh"></div-->
+
+
+
+<main class="inline-block-center">
+
+
+
+ <!--img src="/static/ENEA_logo_name.png" class="ENEA_logo" height="5%" width="15%"-->
+	<!--h2 style="font-weight: bold;">Simulazione costo chilometrico per vettore energetico</h2><img src="/static/ENEA_logo_name.png" style="max-width: 15%;"><br/-->
+	<!--p style="font-weight: bold; font-size: smaller;">(costo carburante tradizionale aggiornato ogni due giorni, costo ricarica elettrica/idrogeno aggiornato ogni tre mesi)</p-->
+	<!--p style="font-weight: bold; font-size: smaller;">(costo ricarica elettrica/idrogeno aggiornato ogni tre mesi)</p-->
+	<!--insert new line-->
+	<br>
+	
+	
+
+  <img src="/static/ENEA_logo_name.png" style="max-width: 25%;">
+  <!--span style="margin-left: 30em;">
+	<a  class="blink" href="/questionario/" target="_blank">vai al questionario</a> 
+  </span-->
+ <h2 style="font-weight: bold;   font-style: italic;">Simulazione costo chilometrico per vettore energetico</h2> 
+ <br>
+	
+
+	
+
+	
+	<div class="break_line"></div>
+
+	<!--form method="POST" action="/day_costi_chilometrici/">
+	<h3 style="font-weight: bold">Data odierna:</h3>
+	   <input type="date" id="registrationday" name="COSTI_day" onchange="this.form.submit()";>
+	</form-->
+	
+	<!--insert new line-->
+	<div class="break_line"></div>
+	<!--br-->
+	
+	
+	
+
+<h3 style="font-weight: bold">Confronto tra alimentazioni:</h3>
+
+<div id="form-wrapper">
+ <div id="form1" class="b">
+ <h3 style="font-weight: bold">*tradizionale:</h3>
+	<form method="POST" action="/tipo_alimentazione_tradizionale/">	
+	<!--select class="tipo_alimentazione" name="FUEL_type" id="fuel_type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()";  onclick="alert('verifica inserimento data odierna...')"-->
+	<select class="tipo_alimentazione" name="FUEL_type_tradizionale" id="fuel_type_carburante" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange= "this.form.submit(); Validate();" >
+			<option value="0">--- scegli ---</option>
+			<option value="1">Benzina</option>
+			<option value="2">Diesel</option>
+			<option value="3">GPL</option>
+			<option value="4">Metano</option>
+	</select>
+		<!--input class="btn btn-primary btn-sm" type="submit" value="Select hour"  onclick="$('#loading').show();"-->
+	</form>
+	
+</div><div id="form2" class="l">
+	<h3 style="font-weight: bold">**elettrica:</h3>
+	 <form method="POST" action="/tipo_alimentazione_elettrica/">	
+	<!--select class="tipo_alimentazione" name="FUEL_type" id="fuel_type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()";  onclick="alert('verifica inserimento data odierna...')"-->
+	<select class="tipo_alimentazione" name="FUEL_type_elettrico" id="fuel_type_elettrico" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()"; )">
+			<option value="0">--- scegli ---</option>
+			<option value="5">Elettrico Casa (3.3kW)</option>
+			<option value="6">Elettrico Casa (4.5kW)</option>
+			<option value="7">Elettrico Casa (6kW)</option>
+			<option value="8">Elettrico Pubblico PPU (fino a 22 kW)</option>
+			<option value="9">Elettrico Pubblico PPU (fino a 99 kW)</option>
+			<option value="10">Elettrico Pubblico PPU (fino a 200 kW)</option>
+			<option value="11">Elettrico Pubblico PPU (fino a 350 kW)</option>
+			<option value="12">Elettrico Pubblico con Abbonam. Medio</option>
+			<option value="13">Elettrico Pubblico con Abbonam. Min</option>
+			<option value="14">Elettrico Pubblico con Abbonam. Max</option>
+	</select>
+	</form>
+	
+</div><div id="form3">
+	<h3 style="font-weight: bold">***idrogeno:</h3>
+ <form method="POST" action="/tipo_alimentazione_idrogeno/">	
+	<!--select class="tipo_alimentazione" name="FUEL_type" id="fuel_type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()";  onclick="alert('verifica inserimento data odierna...')"-->
+	<select class="tipo_alimentazione" name="FUEL_type_idrogeno" id="fuel_type_hydrogen" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()"; )">
+			<option value="0">--- scegli ---</option>
+			<option value="15">H2 grigio</option>
+			<option value="16">H2 blu</option>
+			<option value="17">H2 verde</option>
+	</select>
+	</form>
+ </div>
+ </div>
+  </div>
+	
+	
+<!--insert new line-->
+<!--div class="break_line"></div>
+
+
+<!--br-->
+
+	<br>
+<h3 style="font-weight: bold">Consumo medio:</h3>
+
+<div id="form-wrapper">
+
+
+	
+
+ <div id="form4" class="indent">
+<!-- send user coordinates to the Python console-->
+	   <small style="font-size:120%;">tradizionale    </small><img src="/static/fuel_traditional.png" style="max-width: 20%;"><br/>
+	   <small style="font-size:100%;">(litri/100km)-(kg/100km)</small>
+	<form action="/consumo_medio_tradizionale/" method="POST">
+		  <div>	
+			<input   type='hidden' id='lat' name='lat'/> 
+		  </div>
+		  <div>
+			<input type='hidden' id='lng' name='lng'/> 
+		  <!--/div>
+		  <h3 style="font-weight: bold">tradizionale:</h3>
+		  <div-->
+		  <input type="number"  step="0.01" onfocus="this.value=''" name="consumo_tradizionale" style="width: 7em" value="tradizionale (litri/100km)">
+		   <button type="submit" class="btn btn-default">invia</button>
+		  </div>
+    </form>
+</div>
+
+<div id="form5" class="indent">
+<small style="font-size:120%;">elettrico    </small><img src="/static/ev.png" style="max-width: 20%;"><br/>
+<small style="font-size:100%;">(kWh/100km)  </small>
+	<form action="/consumo_medio_elettrico/" method="POST">
+		  <div>	
+			<input   type='hidden' id='lat' name='lat'/>
+		  </div>
+		  <div>
+			<input type='hidden' id='lng' name='lng'/>
+		  <!--/div>
+		  <h3 style="font-weight: bold">elettrico:</h3>
+		  <div-->
+		  <input type="number" step="0.01"  onfocus="this.value=''"  name="consumo_elettrico" style="width: 7em" value='elettrico (kWh/100km)'>
+		   <button type="submit" class="btn btn-default">invia</button>
+		  	<!--span style="font-weight: bold" class="label potenza">potenza batteria (kWh):</span>
+		     <input type="number" step="0.01"  onfocus="this.value=''"  name="capacita_batteria" value='potenza batteria'>
+		   <button type="submit" class="btn btn-default">invia</button>
+		   
+		   <span style="font-weight: bold" class="label potenza">autonomia batteria (KM):</span>
+		     <input type="number" step="0.01"  onfocus="this.value=''"  name="autonomia_batteria" value='autonomia batteria'>
+		   <button type="submit" class="btn btn-default">invia</button-->
+		   
+		   
+		  </div>
+    </form>
+	
+	 <!--span class="label fuel_type">Consumo medio (litri/100km):</span-->
+	
+</div><div id="form6" class="indent">
+<small style="font-size:120%">idrogeno    </small><img src="/static/station_h2.png" style="max-width: 19%;"><br/>
+<small style="font-size:100%;">(kg/100km)  </small>
+<form action="/consumo_medio_idrogeno/" method="POST">
+		  <div>	
+			<input   type='hidden' id='lat' name='lat'/>
+		  </div>
+		  <div>
+			<input type='hidden' id='lng' name='lng'/> 
+		  <!--/div>
+		  <h3 style="font-weight: bold">idrogeno:</h3>
+		  <div-->
+		  <input type="number" step="0.01"  onfocus="this.value=''"  name="consumo_idrogeno" style="width: 7em" value='idrogeno (kg/100km)'>
+		   <button type="submit" class="btn btn-default">invia</button>
+		  </div>
+    </form>
+
+</div>
+  </div>
+  </div>
+	
+
+		<!--div-->
+		   
+		   
+	
+		<ul>
+		{% for item in data_COSTI %}
+		<!--table class="center_table" style="width:70%"-->
+		<table class="w3-table-all w3-card-4 w3-centered w3-large" style="width:95%;">
+		
+		<tr class="w3-red">
+			<td class="w3-centered" style="font-weight: bold; background: #ff0000;" colspan="2">tradizionale</td>
+			<td class="w3-centered" style="font-weight: bold; background: #6666ff;" colspan="2">elettrico</td>
+			<td class="w3-centered" style="font-weight: bold; background: #66b266;" colspan="2">idrogeno</td>
+		 </tr>
+		 <tr class="w3-blue">
+		    <th class="w3-centered" style="font-weight: bold; background: #ff0000; font-size:100%;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #ff0000; font-size:80%;">EUR/100km<!--br-->
+			<!--small>(EUR/100km)</small> <br-->
+			</th>
+			<th class="w3-centered" style="font-weight: bold; background: #6666ff;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #6666ff; font-size:80%;">EUR/100km<!--br-->
+			</th>
+			<th class="w3-centered" style="font-weight: bold; background: #66b266;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #66b266; font-size:80%;">EUR/100km<!--br-->
+			</th>
+		  </tr>
+		  <tr>
+		    <td class="w3-center">{{item.consumo_tradizionale}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_TRADIZIONALE}}</td>
+			<td class="w3-center">{{item.consumo_elettrico}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_ELETTRICO}}</td>
+			<td class="w3-center">{{item.consumo_idrogeno}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_IDROGENO}}</td>
+		  </tr>
+		</table>
+		{% endfor %}
+		</ul>
+	 
+		
+		   
+		   
+		 <!--br-->
+		   <div class="break_line"></div>
+		  <!--/div--> 
+
+	
+
+	
+	
+	<form action="/costo_chilometrico_finale/" method="POST">
+		<!--input class="btn_costi btn-lg btn-primary mr-1" type="submit" value="calcola costo" onclick="$('#loading').show();"-->
+		<input class="btn_costi btn-lg btn-primary mr-1" type="submit" value="calcola costo">
+     </form>
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
+	<!--ul>
+		{% for item in data_COSTO_CHILOMETRICO %}
+		<table class="w3-table w3-blue center_table_consumi" style="width:50%">
+		<tr>
+		    <th class="w3-table-all w3-xlarge w3-center">{{item.COSTO_CHILOMETRICO}}</th>
+		</tr>
+		</table>
+		{% endfor %}
+		</ul-->
+		<!--insert new line-->
+	
+	<ul>
+		{% for item in data_COSTI_bis %}
+		<table class="w3-table-all w3-card-4 w3-large" style="width:95%">
+		 
+		 <tr class="w3-red">
+			<td class="w3-center" style="font-weight: bold; background: #ff0000;" colspan="2">tradizionale</td>
+			<td class="w3-center" style="font-weight: bold; background: #6666ff;" colspan="2">elettrico</td>
+			<td class="w3-center" style="font-weight: bold; background: #66b266;" colspan="2">idrogeno</td>
+		 </tr>
+		 <tr class="w3-blue">
+		    <th class="w3-center" style="font-weight: bold; background: #ff0000;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #ff0000; font-size:80%;">EUR/100km<!--br-->
+			</th>
+			<th class="w3-center" style="font-weight: bold; background: #6666ff;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #6666ff; font-size:80%;">EUR/100km<!--br-->
+			</th>
+			<th class="w3-center" style="font-weight: bold; background: #66b266;">consumo</th>
+			<th class="w3-center" style="font-weight: bold; background: #66b266; font-size:80%;">EUR/100km<!--br-->
+			</th>
+		  </tr>
+		  <tr>
+		     <td class="w3-center">{{item.consumo_tradizionale}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_TRADIZIONALE}}</td>
+			<td class="w3-center">{{item.consumo_elettrico}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_ELETTRICO}}</td>
+			<td class="w3-center">{{item.consumo_idrogeno}}</td>
+			<td class="w3-center">{{item.COSTO_CHILOMETRICO_IDROGENO}}</td>
+		  </tr>
+		</table>
+		{% endfor %}
+		</ul>
+	<br>
+	
+	
+	
+<div id="parent">
+  <div id="wide" class="l">
+  <body onload="Validate()">
+	<!--p>*<span class="footnote_tradizionale" id='prezzo_carburante_tradizionale'></p-->
+	<p style="color:black; font-weight: bold; font-size:80%; ">*Prezzo medio per: <span class="footnote_tradizionale" id='prezzo_carburante_tradizionale_only'></span><a p style="color:black; font-weight: bold; font-size:100%; "> (fonte MASE, valore aggiornato ogni due giorni)</a>
+	<p style="color:black; font-weight: bold; font-size:80%; ">**Prezzo medio per tipo di ricarica: <span class="footnote_elettrico" id='prezzo_elettrico_only'></span><a p style="color:black; font-weight: bold; font-size:100%; "> (fonte ENEA-ARERA per consumo medio annuo di 5500 kWh, valore aggiornato ogni tre mesi)</a>
+    <p style="color:black; font-weight: bold; font-size:80%; ">***Prezzo medio per: <span class="footnote_idrogeno" id='prezzo_idrogeno_only'></span><a p style="color:black; font-weight: bold; font-size:100%; "> (fonte ENEA, valore aggiornato ogni tre mesi)</a>
+		 
+	<!--p>**<span class="footnote_elettrico" id='prezzo_elettrico'></p-->
+	<!--p>***<span class="footnote_idrogeno" id='prezzo_idrogeno'></p-->
+	
+  </div>
+  
+  <!--div id="narrow">
+	 <a class="animation_link_refresh" href="/costi_chilometrici/">ricarica </a>
+  </div-->
+</div>
+
+
+
+
+		
+<!--br-->
+ 
+<!-- MAKE a REFRESH BUTTON-->
+<form method="POST" action="/costi_chilometrici/">
+	<input class="btn_refresh btn-lg btn-outline-primary mr-1" style="position: absolute; right: 0;" type="submit" value="ricarica"></p>
+</form>
+
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+ 
+ 
+   <h2 style="font-weight: bold; font-family: Arial Black;  color: #00004c; font-style: italic;  font-size:170%; ">Simula costi di mantenimento della tua nuova auto:</h2>
+	<!--a class="blink" href="/risposte_questionario_BIS/" style="margin-top: -0px; font-weight: bold; font-size:150%;" onclick="window.open('https://forms.office.com/e/9zugWShe5q?origin=lprLink');">rispondi al questionario ed invia</a--> 
+
+	<!--a class="blink" href="/questionario_ENEA/" style="margin-top: -0px; font-weight: bold; font-size:150%;">rispondi al questionario ENEA ed invia</a--> 
+	
+	
+	<form action="/questionario_ENEA/" method="POST">
+		<input class="btn_simulazione_costi btn-lg btn-primary mr-1 blink" type="submit"  style="margin-left: 0em;" value=" ==> inizia simulazione costi" onclick="$('#loading').show();">
+     </form>
+	 
+
+</main>
+
+
+
+
+
+
+ <script>
+     // ----------------------------------------------------
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function() {
+        window.setTimeout(function() {
+          setFrameHeight(document.documentElement.clientHeight)
+        }, 0);
+      });
+	
+	
+	var costi_day = "{{ session['COSTI_day']}}"
+	// alert(costi_day);
+		 
+	var costi_day = costi_day.slice(0, 10);
+	// alert(costi_day);
+		 
+	document.addEventListener("DOMContentLoaded", function(){
+    // var data_selezionata = "{{ session['COSTI_day'] }}";
+	var data_selezionata = costi_day;
+	//alert(data_selezionata);
+	document.getElementById('registrationday').value = data_selezionata;  
+	});
+	
+	
+	var fuel_type_tradizionale = "{{session['FUEL_type_tradizionale']}}"
+	var fuel_type_elettrico = "{{session['FUEL_type_elettrico']}}"
+	var fuel_type_idrogeno = "{{session['FUEL_type_idrogeno']}}"
+	// alert(fuel_type);
+	
+    document.addEventListener("DOMContentLoaded", function(){
+	var alimentazione_selezionata_tradizionale =  fuel_type_tradizionale;
+	var alimentazione_selezionata_elettrica =  fuel_type_elettrico;
+	var alimentazione_selezionata_idrogeno =  fuel_type_idrogeno;
+	// alert(alimentazione_selezionata);
+	document.getElementById('fuel_type_carburante').value = alimentazione_selezionata_tradizionale;  
+	document.getElementById('fuel_type_elettrico').value = alimentazione_selezionata_elettrica;  
+	document.getElementById('fuel_type_hydrogen').value = alimentazione_selezionata_idrogeno;  
+	});
+	
+	
+	$('form select').on('change', function(){
+		$(this).closest('form').submit()
+		$('#loading').show();
+	});
+	
+	    
+	
+	function myFunction() {
+      //var number = "1.834";
+	  var prezzo_carburante_tradizionale = "{{ session['footnote_prezzo_carburante_tradizionale']}}";
+	  var prezzo_elettrico = "{{ session['footnote_prezzo_elettrico']}}";
+	  var prezzo_idrogeno = "{{ session['footnote_prezzo_idrogeno']}}";
+      document.getElementById("prezzo_carburante_tradizionale").innerHTML = prezzo_carburante_tradizionale;
+	  document.getElementById("prezzo_elettrico").innerHTML = prezzo_elettrico;
+	  document.getElementById("prezzo_idrogeno").innerHTML = prezzo_idrogeno;
+    }
+	
+	
+
+
+function Validate()
+  {
+	var combo = document.getElementById("fuel_type_carburante");
+	if(combo.selectedIndex ==4)
+	{
+	  var prezzo_carburante_tradizionale_only = "{{ session['footnote_prezzo_carburante_tradizionale']}}";
+	   document.getElementById("prezzo_carburante_tradizionale_only").innerHTML = prezzo_carburante_tradizionale_only;
+	  // alert(prezzo_carburante_tradizionale_only);
+	  
+	  var prezzo_elettrico_only = "{{ session['footnote_prezzo_elettrico']}}";
+	  document.getElementById("prezzo_elettrico_only").innerHTML = prezzo_elettrico_only;
+	   
+	  var prezzo_idrogeno_only = "{{ session['footnote_prezzo_idrogeno']}}";
+	  document.getElementById("prezzo_idrogeno_only").innerHTML = prezzo_idrogeno_only;
+	}
+    else
+	{
+	  var prezzo_carburante_tradizionale_only = "{{ session['footnote_prezzo_carburante_tradizionale']}}";
+	   document.getElementById("prezzo_carburante_tradizionale_only").innerHTML = prezzo_carburante_tradizionale_only;
+	   
+	  var prezzo_elettrico_only = "{{ session['footnote_prezzo_elettrico']}}";
+	   document.getElementById("prezzo_elettrico_only").innerHTML = prezzo_elettrico_only;
+	   
+	  var prezzo_idrogeno_only = "{{ session['footnote_prezzo_idrogeno']}}";
+	   document.getElementById("prezzo_idrogeno_only").innerHTML = prezzo_idrogeno_only;
+	}
+	
+  }
+
+
+
+		
+
+	
+ </script>
+</body>
+</html>

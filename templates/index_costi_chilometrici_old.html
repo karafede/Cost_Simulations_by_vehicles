@@ -1,0 +1,698 @@
+
+<!doctype html>
+<html lang="en">
+
+<style type="text/css">
+
+// * { border: 1px solid red !important; }
+
+
+	body {
+	    padding: 0;
+        margin: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		background-image: url("/static/car_on_road.jpg");
+		// background-repeat: no-repeat;
+		//background-size: 90%;
+		background-attachment: fixed;
+		 background-size: cover;
+        //position: relative;
+        background-position: center;
+	 }
+	 
+	 
+		 
+    #map {
+	  height: 100%;
+	}
+	
+	/* Optional: Makes the sample page fill the window. */
+	html, body {
+	  height: 100%;
+	  margin: 0;
+	  padding: 0;
+	}
+
+
+    .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 10px; color: #555; font-size: 0.875em} .legend i { width: 10px; height: 10px; float: left; margin-right: 4px; opacity: 0.7; } 
+
+
+	
+
+     /** sidebar menu **/
+	.innerDiv{
+		position: absolute;
+		width: 10%;
+		height: 15%;
+		background-color: #b2b2ff;
+		opacity: 0.8;
+		margin-top:  1%;
+		margin-left: 5%;
+		z-index: 800;
+		padding-top: 1%;
+		text-overflow:ellipsis;
+        overflow:hidden;
+	}
+	
+
+	
+
+    .button {
+	    position: absolute;
+		left: 2%;
+		top: 80%;
+		height: 8%;
+		width: 7%
+        min-width: 7%;
+		margin-top: 30%;
+		margin-left: 50%;
+		z-index: 500;
+	    border: none;
+	    color: white;
+	    padding: 20px;
+	    text-align: center;
+	    display: inline-block;
+	    font-size: 1.5em;
+	    margin: 10px 20px;		
+	}
+
+
+
+	
+		 
+		 
+   header, nav {
+    left: 2%;
+	top: 85%;
+  	z-index: 700;
+	position: absolute;
+	text-align: center;
+	margin: 20px 0;
+	padding: 10px;
+	border-spacing: 5px;
+	
+  }
+
+	nav a {
+	  text-decoration: none;
+	  background: #000000;  /* Black */
+	  border-radius: 5px;
+	  font-size: 1.2em;
+	  color: white;
+	  padding: 3px 8px;
+	  display: table-cell;
+	}
+	
+	nav .col_home {
+		background-color: #6b0000;
+	}
+	
+	nav .col_privata {
+		background-color: #4CAF50;
+	}
+	
+	
+	nav .col_collettivo {
+		background-color: #0000ff ;
+	}
+	
+	nav .col_scenari {
+		background-color: #ffa500 ;
+	}
+	
+	
+	nav .col_impatti {
+		background-color: #76a5af ;
+	}
+	
+	nav .IEA_statistics {
+		background-color: #ededed ;
+		color: blue;
+	}
+	
+	
+	
+	
+	
+	
+  /** submit lat lon and input text to Python **/
+   main {
+		// background-color: rgba(51, 170, 51, .3); 
+		// background-color: rgba(248, 248, 248, .3); 
+		background-color: rgba(251, 251, 251, .4); 
+		left: 2%;
+		top: 3%;
+		z-index: 700;
+		position: absolute;
+		margin: 2px 0;
+		padding: 5px;
+		text-overflow:ellipsis;
+        overflow:hidden;
+    width: 780px;
+    height: 740px
+	}
+
+	main div {
+	  background: transparent; 
+	  color: white;
+	  padding: 1px;
+	  margin: 5px auto;
+	}
+	
+
+	main div:nth-child(1) {
+	  width: 0px;
+	  height: 0px;
+	   background: transparent;
+	}
+	
+
+	main div:nth-child(3) {
+      width: 170px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(4) {
+	  width: 270px;
+	   // background: orange;
+	   background: transparent;
+	}
+	
+	main div:nth-child(5) {
+	  width: 270px;
+	 background: transparent;
+	}
+	
+	main div:nth-child(6) {
+	   width: 270px;
+	    background: blue;
+	}
+	
+	main div:nth-child(7) {
+	  width: 270px;
+	   background: blue;
+	}
+	
+	main div:nth-child(10) {
+	  width: 270px;
+	   	 background: blue;
+	}
+	
+	
+
+	
+	.inline-block-center {
+	  text-align: center;
+	}
+	
+	.flex-center {
+	  display: flex;
+	  justify-content: center;
+	}
+	
+
+	h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+	}
+	
+	
+	h3 {
+    margin: 0;
+    padding: 0;
+	display: inline;
+	}
+	
+	
+	
+.animation_link {
+  font-size: 140%;
+  color: blue;
+  font-weight: bold;
+}
+
+	
+.animation_link_IEA_STATS {
+  font-size: 130%;
+  color: #0f45d2;
+  font-weight: bold;
+}
+
+
+.label {
+  color: black;
+  padding: 8px;
+  font-family: Arial;
+  font-weight: bold;
+}
+
+# .fuel_type {background-color: #ffffff;} /* Blue */
+
+
+table, th, td {
+  border:1px solid black;
+   left: 20%;
+}
+
+
+table.center_table {
+  //margin-left: -15%; 
+  margin-left: 10%;
+}
+
+
+table.center_table_consumi {
+  //margin-left: -15%; 
+  margin-left: 20%;
+}
+
+
+
+.rds_logo {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+
+.ENEA_logo {
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+
+.img_ENEA {
+ margin-left: 1px;
+  margin-top: 10px;
+}
+
+
+
+div#loading {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ div#loading_refresh {
+    display: none;
+	position: absolute;
+	left: 50%;
+    top: 50%;
+    z-index: 700;
+	width: 270px;
+	height: 270px;
+	 margin: -76px 0 0 -76px;
+    background: url(/static/loadingimage_TPL.gif) no-repeat;
+    cursor: wait;
+ }
+ 
+ 
+ 
+    /* custom primary buttons */
+    
+    .btn-primary {
+        color: #212529;
+        background-color: #99cc99;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:hover {
+        color: #212529;
+        background-color: #52bebe;
+        border-color: #8ad3d3
+    }
+    
+    .btn-primary:focus,
+    .btn-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-primary.disabled,
+    .btn-primary:disabled {
+        color: #212529;
+        background-color: #7cc;
+        border-color: #5bc2c2
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active,
+    .btn-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #9cdada;
+        border-color: #2e7c7c
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(91, 194, 194, 0.5)
+    }
+    
+    .btn-outline-primary {
+        color: #000000;
+        background-color: #ffc966;
+        background-image: none;
+        border-color: #7cc;
+    }
+    
+    .btn-outline-primary:hover {
+        color: #222;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:focus,
+    .btn-outline-primary.focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+    
+    .btn-outline-primary.disabled,
+    .btn-outline-primary:disabled {
+        color: #7cc;
+        background-color: transparent
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active,
+    .btn-outline-primary:not(:disabled):not(.disabled).active,
+    .show>.btn-outline-primary.dropdown-toggle {
+        color: #212529;
+        background-color: #8ad3d3;
+        border-color: #7cc
+    }
+    
+    .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+    .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+    .show>.btn-outline-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+    }
+
+	.btn_refresh {width: 15%;
+		  height: 50px;
+		  font-size: 18px;
+		   font-weight: bold;
+		   text-align: center;
+		   left: 83%;
+			top: 90%;}
+		   
+	.btn_costi {width: 30%;
+		  height:50px;
+		  font-size: 20px;
+		   font-weight: bold;
+		   text-align: center;}
+		   
+		   
+
+   .select{
+		width:  15%;
+		height: 30px;
+		font-size: 18px;
+		font-weight: bold;}
+	
+	
+    .footnote {
+		font-size: smaller;
+		color: black;
+		font-weight: bold;
+	}
+  
+  
+  
+  
+#parent {
+  display: flex;
+}
+#narrow {
+  width: 17%;
+  background: yellow;
+  color: black;
+  /* Just so it's visible */
+}
+#wide {
+  /*flex: 1; */
+  width: 45%;
+  /* Grow to rest of container */
+  background: lightgreen;
+  color: black;
+  /* Just so it's visible */
+}
+
+
+
+.animation_link_refresh {
+  font-size: 130%;
+  color: black;
+  font-weight: bold;
+}
+
+
+.flex {
+   display: flex;
+   flex-direction: row;
+}
+
+ </style>
+  
+
+	
+	 
+</head>
+   <meta name="description" content="Leaflet Template">
+  <title>ENEA Costi Veicoli</title>
+  <!--meta name="viewport" content="initial-scale=1.0"-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+ </head>
+ 
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	 
+	 
+
+<body>
+<div id="loading"></div>
+<div id="loading_refresh"></div>
+
+<main class="inline-block-center">
+
+
+ 
+
+
+  <div class="img_ENEA">
+    <img src="/static/ENEA_logo_name.png" alt="logo" height="70%" width="70%">
+ </div>
+
+    <!--insert new line-->
+	<!-- https://costikm.aci.it/home-->
+	<!--br-->
+
+
+
+ 
+ 
+	<h2 style="font-weight: bold">Simulazione costo chilometrico</h2>
+	<!--insert new line-->
+	<br>
+	
+
+	
+	<div class="break_line"></div>
+
+	<form method="POST" action="/day_costi_chilometrici/">
+	<h3 style="font-weight: bold">Data odierna:</h3>
+	  <!--input type="date"   value="2019-10-09"  id="ZMU-day" name="ZMU_day"-->
+	   <input type="date" id="registrationday" name="COSTI_day" onchange="this.form.submit()";>
+	   <!--button type="submit" class="btn btn-default">Select</button-->
+	</form>
+	
+	<!--insert new line-->
+	<div class="break_line"></div>
+	<!--br-->
+	
+	
+	
+	<form method="POST" action="/tipo_alimentazione/">	
+	<h3 style="font-weight: bold">Alimentazione:</h3>
+	<!--select class="tipo_alimentazione" name="FUEL_type" id="fuel_type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()";  onclick="alert('verifica inserimento data odierna...')"-->
+	<select class="tipo_alimentazione" name="FUEL_type" id="fuel_type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onchange="this.form.submit()"; )">
+			<option value="0">Benzina</option>
+			<option value="1">Diesel</option>
+			<option value="2">GPL</option>
+			<option value="3">Metano</option>
+			<option value="4">Elettrica</option>
+			<option value="5">H2</option>
+	</select>
+		<!--input class="btn btn-primary btn-sm" type="submit" value="Select hour"  onclick="$('#loading').show();"-->
+	</form>
+	
+	
+<!-- send user coordinates to the Python console-->
+	<form action="/consumo_medio/" method="POST">
+		  <div>	
+			<input   type='hidden' id='lat' name='lat'  /> <br />
+		  </div>
+		  <div>
+			<input type='hidden' id='lng' name='lng'  /> <br />
+		  </div>
+		  
+		  <!--span class="label fuel_type">Consumo medio (litri/100km):</span-->
+		  <h3 style="font-weight: bold">Consumo medio:</h3>
+		  <div>
+		  <input type="text" onfocus="this.value=''"  name="consumo" value='inserisci consumo medio'>
+		   <button type="submit" class="btn btn-default">invia</button>
+		  </div>
+		  
+
+
+		   <!--div-->
+		   
+		   
+	
+		<ul>
+		{% for item in data_COSTI %}
+		<!--table class="center_table" style="width:70%"-->
+		<table class="w3-table-all w3-large" style="width:95%">
+		
+		 <tr class="w3-red">
+			<th class="w3-center">giorno</th>
+			<th class="w3-center">alimentazione</th>
+			<th class="w3-center">consumo medio</th>
+		  </tr>
+		  <tr>
+			<td class="w3-center">{{item.COSTI_day}}</td>
+			<td class="w3-center">{{item.alimentazione}}</td>
+			<td class="w3-center">{{item.consumption}}</td>
+		  </tr>
+		</table>
+		{% endfor %}
+		</ul>
+	 
+		
+		 
+		 <!--https://basscss.com/v7/docs/btn-primary/-->
+		   
+		   
+		 <!--br-->
+		   <div class="break_line"></div>
+		  <!--/div--> 
+	</form>
+	
+
+	
+	
+	<form action="/costo_chilometrico/" method="POST">
+		<input class="btn_costi btn-lg btn-primary mr-1" type="submit" value="calcola costo" onclick="$('#loading').show();">
+     </form>
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
+	<ul>
+		{% for item in data_COSTO_CHILOMETRICO %}
+		<table class="w3-table w3-blue center_table_consumi" style="width:50%">
+		<tr>
+		    <th class="w3-table-all w3-xlarge w3-center">{{item.COSTO_CHILOMETRICO}}</th>
+		</tr>
+		</table>
+		{% endfor %}
+		</ul>
+		<!--insert new line-->
+	<br>
+	
+	
+	
+<div id="parent">
+  <div id="wide">
+  <body onload="myFunction()">
+	<p>*Prezzo medio carburante per litro di <span class="footnote" id='prezzo_carburante'></p>
+	
+  </div>
+  
+  <div id="narrow">
+	 <a class="animation_link_refresh" href="/costi_chilometrici/">ricarica </a>
+  </div>
+</div>
+
+		
+<!--br-->
+ 
+<!-- MAKE a REFRESH BUTTON-->
+<!--form method="POST" action="/costi_chilometrici/">
+	<input class="btn_refresh btn-lg btn-outline-primary mr-1" style="position: absolute; right: 0;" type="submit" value="ricarica"></p>
+</form-->
+
+
+
+</main>
+
+
+
+
+ <script>
+     // ----------------------------------------------------
+
+      // Hack to autoset the iframe height.
+      window.addEventListener("load", function() {
+        window.setTimeout(function() {
+          setFrameHeight(document.documentElement.clientHeight)
+        }, 0);
+      });
+	
+	
+	var costi_day = "{{ session['COSTI_day']}}"
+	// alert(costi_day);
+		 
+	var costi_day = costi_day.slice(0, 10);
+	// alert(costi_day);
+		 
+	document.addEventListener("DOMContentLoaded", function(){
+    // var data_selezionata = "{{ session['COSTI_day'] }}";
+	var data_selezionata = costi_day;
+	//alert(data_selezionata);
+	document.getElementById('registrationday').value = data_selezionata;  
+	});
+	
+	
+	var fuel_type = "{{ session['FUEL_type']}}"
+	// alert(fuel_type);
+	
+    document.addEventListener("DOMContentLoaded", function(){
+	// var fuel_type =  "{{ session['FUEL_type'] }}"
+	var alimentazione_selezionata =  fuel_type;
+	// alert(alimentazione_selezionata);
+	document.getElementById('fuel_type').value = alimentazione_selezionata;  
+	});
+	
+	
+	$('form select').on('change', function(){
+		$(this).closest('form').submit()
+		$('#loading').show();
+	});
+	
+	
+	
+	function myFunction() {
+      //var number = "1.834";
+	  var prezzo_carburante = "{{ session['footnote_prezzo_carburante']}}";
+      document.getElementById("prezzo_carburante").innerHTML = prezzo_carburante;
+    }
+	
+	
+
+	
+ </script>
+</body>
+</html>
