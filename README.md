@@ -14,8 +14,6 @@ It is the first web app that simultaneously compares three types of energy carri
 
 
 <img width="580" height="1200" alt="screenshot_a" src="https://github.com/user-attachments/assets/552b9681-6ce1-43a9-ad54-bfee4b3bc6e4" />
-
 <img width="500" height="1200" alt="screenshot_b" src="https://github.com/user-attachments/assets/183434dc-afdf-4bc2-a9f4-3c29103e54e7" />
-
 <img width="500" height="1200" alt="Screenshot_c" src="https://github.com/user-attachments/assets/adc1fe8a-7e99-4569-b33e-3e9316ba959d" />
 
