@@ -1,4 +1,3 @@
-<img width="1080" height="2400" alt="screenshot_b" src="https://github.com/user-attachments/assets/648f597d-d1ba-481c-a22d-fa840dfeee38" />
 # Dynamic price table for private mobility energy component
 
 ## Possible applications: 
